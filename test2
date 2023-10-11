@@ -1,3 +1,21 @@
 from IPython.display import Image
 from IPython.display import display
 
+# To use a package, we use the command "import" in Python
+import networkx as nx
+
+# G is directed graph 
+G = nx.DiGraph() 
+
+# We define G based on the edges, and the capacity on each edge.
+# One way to do this is to specify a list of edges with each endpoint and the edge capacity.
+# For instance, edge (1,2) has capacity 2, (1,3) has capacity 5, etc.
+edgeList = [(1,2,2),(1,3,5),(2,4,1),(3,2,1),(3,5,3),(4,6,6),(5,2,1),(5,4,2),(5,6,1)]
+
+# We create the graph based on this list.
+G.add_weighted_edges_from(edgeList, 'cap')
+
+# Each edge will have a flow associated with it. At the start of the algorithm, the flow on each edge is 0.
+# We initialize this by iterating through the edges in a for-loop, and setting the attribute 'flow' to 0.
+for i, j in G.edges:
+    G.edges[i,j]['flow'] = 0
