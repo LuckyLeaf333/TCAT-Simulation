@@ -23,6 +23,7 @@ class Bus:
 
     def initialize(self):
         for i, j in self.route.edges:
+            #basically assign the edge the bus number that will travel on it
             self.route.edges[i, j]['number'] = self.number
         self.labels = {}
 
