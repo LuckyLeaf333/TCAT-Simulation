@@ -4,9 +4,7 @@ import math
 
 class Bus:
     
-    def __init__(self, busNum, route, cap, numPass, node):
-        #Bus number (for example bus number 1551 etc)
-        self.num = busNum
+    def __init__(self, route, cap, numPass, node):
 
         #Route number (ex. Route 30)
         self.route = route
