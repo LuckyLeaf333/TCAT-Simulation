@@ -42,3 +42,4 @@ newBus = Bus(30, route, 3, pos, 0)
 
 newBus.initialize()
 newBus.show()
+plt.show()
