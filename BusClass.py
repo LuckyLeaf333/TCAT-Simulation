@@ -20,9 +20,9 @@ class Bus:
         #The current node the bus is at
         self.node = node
     
-    def bus_full (busNum):
-        if (self.numPass = self.cap)
-            return true
-        else return (self.cap-self.numPass)
+    # def bus_full (busNum):
+    #     if (self.numPass = self.cap)
+    #         return true
+    #     else return (self.cap-self.numPass)
 
-    def 
+    # def 
