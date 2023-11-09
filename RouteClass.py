@@ -39,7 +39,7 @@ class Route:
 
 nodes = [1, 2, 3, 4, 5, 6]
 edgeList = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]
-positions = ((0, 0), (0, 10), (0, 20), (30, 20), (30, 40), (40, 50), (50, 60))
+positions = [(0, 0), (0, 10), (0, 20), (30, 20), (30, 40), (40, 50), (50, 60)]
 times = [5, 10, 7, 9, 8]
 
 testRoute = Route(nodes, edgeList, 30, positions, times)
