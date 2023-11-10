@@ -39,4 +39,29 @@ with open('Bus.csv', newline='') as csvfile:
 #         dict[number] =route_obj
 
 
+nodes = [1, 2, 3, 4, 5, 6]
+edgeList = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]
+positions = [(0, 0), (0, 10), (0, 20), (30, 20), (30, 40), (40, 50), (50, 60)]
+times = [5, 10, 7, 9, 8]
+
+testRoute = Route(nodes, edgeList, 30, positions, times)
+
+route = {}
+route[30] = testRoute
+
+time = 0
+
+while True:
+    bus_list[0].update_time()
+    
+    route_ = route[bus_list[0].return_route()]
+
+    node = bus_list[0].return_node()
+    ind = route_.return_nodes().index(node)
+
+    if route_.return_times(ind) == bus_list[0].return_time():
+        bus_list[0].update_node(route.return_node[ind+1])
+        bus_list[0].reset_time()
+
+    
 

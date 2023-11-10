@@ -27,8 +27,14 @@ class Route:
             self.graph[u][v]['times'] = times[i]
             i += 1
 
+    def return_nodes(self):
+        return self.nodes
+    
     def numStops(self):
         return len(self.nodes)
+
+    def return_time(self):
+        return self.return_times()
 
     def show(self):
         nx.draw_networkx(self.graph, self.positions, node_size=500, node_color='darkorange')  # draw graph

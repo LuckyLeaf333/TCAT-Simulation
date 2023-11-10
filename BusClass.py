@@ -18,6 +18,27 @@ class Bus:
         #The current node the bus is at
         self.node = node
 
+        self.time_ = 0
+
+    
+    def update_time(self):
+        self.time_ += 1
+    
+    def reset_time(self):
+        self.time =0
+
+    def time(self):
+        return self.time_
+    
+    def return_route(self):
+        return self.route
+    
+    def return_node(self):
+        return self.node
+
+    def update_node(self, number):
+        self.node = number
+    
         # self.currentpass = []
         #     for i in range(cap):
         #         self.currentpass.append(0)
@@ -25,7 +46,6 @@ class Bus:
         
         # self.currentpass = np.empty(cap, dtype = Passenger)
             # change array to maybe an array of Passenger objects?
-
 
 # a = Bus(1234,81,10,1,2)
     
