@@ -17,10 +17,20 @@ class Bus:
 
         #The current node the bus is at
         self.node = node
-    
-    # def bus_full (busNum):
-    #     if (self.numPass = self.cap)
-    #         return true
-    #     else return (self.cap-self.numPass)
 
-    # def 
+        self.currentpass = []
+            for i in range(cap):
+                self.currentpass.append(0)
+            print(self.currentpass)
+        
+        # self.currentpass = np.empty(cap, dtype = Passenger)
+            # change array to maybe an array of Passenger objects?
+
+
+a = Bus(1234,81,10,1,2)
+    
+     def bus_full (busNum):
+         if (self.numPass == self.cap)
+             return true
+         else return (self.cap-self.numPass)
+
