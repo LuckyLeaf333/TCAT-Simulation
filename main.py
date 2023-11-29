@@ -52,16 +52,5 @@ route[30] = testRoute
 time = 0
 
 while True:
-    bus_list[0].update_time()
-    
-    route_ = route[bus_list[0].return_route()]
-
-    node = bus_list[0].return_node()
-    ind = route_.return_nodes().index(node)
-
-    if route_.return_times(ind) == bus_list[0].return_time():
-        bus_list[0].update_node(route.return_node[ind+1])
-        bus_list[0].reset_time()
-
     
 
