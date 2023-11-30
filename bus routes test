@@ -1,0 +1,35 @@
+class Solution:
+  def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+
+  stoptoRoutes = {} 
+
+  for route in range(len(routes)):
+      for stop in routes [route]:
+        if stop not in stopToRoutes:
+          stopToRoutes[stop] = set ()
+        stopToRoutes[stop].add(route)
+  
+  visited_routes, visited_stops = set(), set()
+    queue = [(source, 0)]
+
+  while len(queue) != 0:
+    currStop, busesTaken = queue.pop(0)
+
+    if currStop not in visited_stops:
+      if currStop == target:
+        return busesTaken
+
+      visited_stops.add(currStop)
+
+      for connectedRoute in stopToRoutes [currStop]:
+        if connectedRoute not in visited_routes:
+          for connectedStop in routes [connectedRoute]:
+            if connectedStop not in visited_stops:
+              queue.append((connectedStop, busesTaken + 1))
+
+
+
+
+
+
+    
