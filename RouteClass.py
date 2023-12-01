@@ -5,7 +5,7 @@ import math
 
 class Route:
 
-    def __init__(self, nodes, edges, number, positions, times):
+    def __init__(self, nodes, edges, number, positions, times, passenger):
         # A list of nodes, representing bus stops, included in the route
         self.nodes = nodes
 
@@ -21,6 +21,8 @@ class Route:
         # A networkx graph representing the route
         self.graph = nx.Graph()
         self.graph.add_edges_from(self.edges)
+
+        nx.set_node_attributes(self.graph, passenger, "passenger")
 
         i = 0
         for (u, v) in self.graph.edges():
@@ -41,6 +43,9 @@ class Route:
         nx.draw_networkx_edge_labels(self.graph, self.positions,
                                      edge_labels=nx.get_edge_attributes(self.graph, 'times'))
         plt.show()
+
+    def show_pass(self):
+        print(self.graph.nodes[2]["passenger"])
 
 
 # nodes = [1, 2, 3, 4, 5, 6]

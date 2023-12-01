@@ -14,15 +14,15 @@ with open('Passenger.csv', newline='') as csvfile:
         
         passenger_list.append(Passenger(attribute[0], attribute[1]))
 
-with open('Bus.csv', newline='') as csvfile:
-    reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
-    next(reader)
-    bus_list = []
-    for row in reader:
-        attribute = []
-        [attribute.append(int(i)) for i in row[0].split(",")]
+# with open('Bus.csv', newline='') as csvfile:
+#     reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+#     next(reader)
+#     bus_list = []
+#     for row in reader:
+#         attribute = []
+#         [attribute.append(int(i)) for i in row[0].split(",")]
         
-        bus_list.append(Bus(attribute[0], attribute[1], attribute[2], attribute[3]))
+#         bus_list.append(Bus(attribute[0], attribute[1], attribute[2], attribute[3]))
 
 # with open('route.csv', newline='') as csvfile:
 #     reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
@@ -44,13 +44,18 @@ edgeList = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]
 positions = [(0, 0), (0, 10), (0, 20), (30, 20), (30, 40), (40, 50), (50, 60)]
 times = [5, 10, 7, 9, 8]
 
-testRoute = Route(nodes, edgeList, 30, positions, times)
+pass_node = {}
+for i in passenger_list:
 
-route = {}
-route[30] = testRoute
-
-time = 0
-
-while True:
+    waiting_node = i.return_node()
     
+    if waiting_node in pass_node.keys():
 
+        pass_node[waiting_node].append(i)
+    
+    else:
+        pass_node[waiting_node] = [i]
+
+testRoute = Route(nodes, edgeList, 30, positions, times, pass_node)
+
+testRoute.show_pass()
