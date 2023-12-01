@@ -4,7 +4,7 @@ import math
 
 class Bus:
     
-    def __init__(self, route, cap, numPass, node):
+    def __init__(self, route, cap, node):
 
         #Route number (ex. Route 30)
         self.route = route
@@ -13,12 +13,14 @@ class Bus:
         self.cap = cap
 
         #number of passengers currently on the bus
-        self.numPass = numPass
+        self.numPass = 0
 
         #The current node the bus is at
         self.node = node
 
         self.time_ = 0
+
+        
 
     
     def update_time(self):

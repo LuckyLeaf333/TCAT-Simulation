@@ -7,6 +7,9 @@ class Passenger:
         self.node_traveled -= 1
         return (self.node_traveled)
 
+    def return_node(self):
+        return self.w_node
+
 
 # def on_bus(): #returns true if a specific passenger is on a specific bus
 #         if self.bus.currentpass.contains(Passenger):
