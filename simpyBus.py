@@ -1,6 +1,7 @@
 import simpy
 import matplotlib.pyplot as plt
 import networkx as nx
+import csv
 
 
 class Passenger:
@@ -8,6 +9,9 @@ class Passenger:
         self.id = id
         self.target = target
         self.start = start
+        
+    def return_node(self):
+        return self.start
 
 class Bus(object):
     """
@@ -111,9 +115,35 @@ times = [5, 10, 7, 9, 8, 5, 6, 11, 6]
 graph = nx.Graph()
 graph.add_edges_from(edgeList)
 
-passengerList = {1: [Passenger(1, 1, 5), Passenger(2, 1, 1)], 2: [], 3: [], 4:[], 5:[Passenger(3, 5, 8), Passenger(4, 5, 1)],
-                 6:[], 7:[], 8:[]}
-nx.set_node_attributes(graph, passengerList, 'passengers')
+
+
+# passengerList = {1: [Passenger(1, 1, 5), Passenger(2, 1, 1)], 2: [], 3: [], 4:[], 5:[Passenger(3, 5, 8), Passenger(4, 5, 1)],
+#                  6:[], 7:[], 8:[]}
+
+
+with open('Passenger.csv', newline='') as csvfile:
+    reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
+    next(reader)
+    passenger_list = []
+    for row in reader:
+        attribute = []
+        [attribute.append(int(i)) for i in row[0].split(",")]
+        
+        passenger_list.append(Passenger(attribute[0], attribute[1]), attribute[2])
+
+pass_node = {}
+for i in passenger_list:
+
+    waiting_node = i.return_node()
+    
+    if waiting_node in pass_node.keys():
+
+        pass_node[waiting_node].append(i)
+    
+    else:
+        pass_node[waiting_node] = [i]
+
+nx.set_node_attributes(graph, pass_node, 'passengers')
 
 i = 0
 for (u, v) in edgeList:
