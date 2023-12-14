@@ -13,8 +13,8 @@ class Passenger:
     """
     def __init__(self, id, start, target):
         self.id = id
-        self.target = target
         self.start = start
+        self.target = target
         
     def return_node(self):
         return self.start
@@ -149,35 +149,37 @@ times = [5, 10, 7, 9, 8, 5, 6, 11, 6]
 graph = nx.Graph()
 graph.add_edges_from(edgeList)
 
-
-
-# passengerList = {1: [Passenger(1, 1, 5), Passenger(2, 1, 1)], 2: [], 3: [], 4:[], 5:[Passenger(3, 5, 8), Passenger(4, 5, 1)],
-#                  6:[], 7:[], 8:[]}
-
-
+#Reads in Passengers from CSV file
 with open('Passenger.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=' ', quotechar='|')
     next(reader)
     passenger_list = []
     for row in reader:
+        print(row)
         attribute = []
         [attribute.append(int(i)) for i in row[0].split(",")]
         
-        passenger_list.append(Passenger(attribute[0], attribute[1]), attribute[2])
+        passenger_list.append(Passenger(attribute[0], attribute[1], attribute[2]))
 
-pass_node = {}
+#PassengerList is a dictionary with all the passengers
+passengerList = {}
 for i in passenger_list:
 
     waiting_node = i.return_node()
     
-    if waiting_node in pass_node.keys():
+    if waiting_node in passengerList.keys():
 
-        pass_node[waiting_node].append(i)
+        passengerList[waiting_node].append(i)
     
     else:
-        pass_node[waiting_node] = [i]
+        passengerList[waiting_node] = [i]
 
-nx.set_node_attributes(graph, pass_node, 'passengers')
+#Checks for empty nodes, if there are empty nodes, then fill them in with an empty list
+for i in range(graph.number_of_nodes()+1):
+    if i not in passengerList.keys():
+        passengerList[i] = []
+
+nx.set_node_attributes(graph, passengerList, 'passengers')
 
 # Set the time needed to travel from one node to the next
 i = 0
