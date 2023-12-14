@@ -45,6 +45,9 @@ class Bus(object):
             # Board passengers if bus not full
             if self.numPassengers < self.capacity:
                 yield self.env.process(self.pickUpPassengers(5))
+
+            # if there are passengers to drop off, drop off the passengers
+            yield self.env.process(self.dropOffPassengers(5))
             print("Bus %d is leaving stop %s at time %d" % (self.id, self.stopName, self.env.now))
 
     def goToNextStop(self, duration):
@@ -85,6 +88,20 @@ class Bus(object):
         yield self.env.timeout(duration)
         print("Bus %d has boarded passengers %sat time %d" % (self.id, outputString, self.env.now))
 
+    def dropOffPassengers(self, duration):
+        dropOff = False
+        dropOffList = []
+        for passenger in self.passengerList:
+            if passenger.target == self.stopName:
+                dropOff = True
+                dropOffList.append(passenger)
+        if dropOff:
+            yield self.env.timeout(duration)
+            outputString = ""
+            for passenger in dropOffList:
+                self.passengerList.remove(passenger)
+                outputString += str(passenger.id) + ", "
+            print("Bus %d has dropped off passengers %s at time %d" % (self.id, outputString, self.env.now))
 
 # Set up graph for bus route
 nodes = [1, 2, 3, 4, 5, 6, 7, 8]
